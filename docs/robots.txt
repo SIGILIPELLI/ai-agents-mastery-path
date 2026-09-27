@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sigilipelli.github.io/ai-agents-mastery-path/sitemap.xml

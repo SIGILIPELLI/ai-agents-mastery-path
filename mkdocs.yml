@@ -1,0 +1,113 @@
+site_name: AI Agents Mastery Path
+site_description: A structured, vendor-neutral course on building AI agents — the agent loop, tool calling, planning, memory, multi-agent systems, evaluation and safety — with runnable offline code.
+site_url: https://sigilipelli.github.io/ai-agents-mastery-path/
+repo_url: https://github.com/sigilipelli/ai-agents-mastery-path
+repo_name: ai-agents-mastery-path
+
+theme:
+  name: material
+  favicon: assets/favicon.svg
+  custom_dir: docs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/progress-tracker.css
+
+extra_javascript:
+  - javascripts/progress-tracker.js
+
+nav:
+  - Home: index.md
+  - Privacy Policy: privacy.md
+  - License: license.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · What an Agent Is (and Isn't)": level-1/01-what-is-an-agent.md
+      - "02 · The Agent Loop": level-1/02-the-agent-loop.md
+      - "03 · Tool Calling Fundamentals": level-1/03-tool-calling-fundamentals.md
+      - "04 · Writing Good Tool Definitions": level-1/04-tool-definitions.md
+      - "05 · A Minimal Agent in Plain Python": level-1/05-minimal-agent-from-scratch.md
+      - "06 · Handling Tool Errors": level-1/06-handling-tool-errors.md
+      - "07 · Stopping Conditions & Step Limits": level-1/07-stopping-conditions.md
+      - "08 · Structured Outputs": level-1/08-structured-outputs.md
+      - "09 · Logging & Tracing an Agent": level-1/09-logging-tracing.md
+      - "10 · Project — File-Organizer Agent": level-1/10-project-file-organizer-agent.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Frameworks: When and Which": level-2/01-frameworks-overview.md
+      - "02 · Agents as State Graphs": level-2/02-state-graphs.md
+      - "03 · Short-Term Memory & Context": level-2/03-short-term-memory.md
+      - "04 · Long-Term & Vector Memory": level-2/04-long-term-memory.md
+      - "05 · ReAct and Plan-and-Execute": level-2/05-react-plan-execute.md
+      - "06 · Reflection & Self-Critique": level-2/06-reflection.md
+      - "07 · Retrieval as a Tool": level-2/07-retrieval-as-a-tool.md
+      - "08 · Human-in-the-Loop Approvals": level-2/08-human-in-the-loop.md
+      - "09 · Streaming Agent Progress": level-2/09-streaming.md
+      - "10 · Project — Research Agent with Approvals": level-2/10-project-research-agent.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · Multi-Agent Systems: Why and When": level-3/01-multi-agent-systems.md
+      - "02 · Supervisors & Handoffs": level-3/02-supervisors-handoffs.md
+      - "03 · Model Context Protocol (MCP) Concepts": level-3/03-mcp-concepts.md
+      - "04 · Sandboxing Code-Execution Agents": level-3/04-sandboxing-code-execution.md
+      - "05 · Evaluating Agents: Task Success": level-3/05-eval-task-success.md
+      - "06 · Trajectory Evaluation": level-3/06-trajectory-evaluation.md
+      - "07 · Cost & Latency Control": level-3/07-cost-latency.md
+      - "08 · Reliability: Retries, Timeouts, Idempotency": level-3/08-reliability.md
+      - "09 · Prompt Injection via Tools & Data": level-3/09-prompt-injection-defense.md
+      - "10 · Project — Evaluated Multi-Agent Triage": level-3/10-project-multi-agent-triage.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · Production Agent Architecture": level-4/01-production-architecture.md
+      - "02 · Observability in Production": level-4/02-observability.md
+      - "03 · Security & Least Privilege": level-4/03-security-permissions.md
+      - "04 · Guardrails & Policy as Code": level-4/04-guardrails-policy.md
+      - "05 · Agentic Workflows in the Enterprise": level-4/05-enterprise-workflows.md
+      - "06 · When NOT to Use an Agent": level-4/06-when-not-to-use-agents.md
+      - "07 · Testing Strategies for Agents": level-4/07-testing-strategies.md
+      - "08 · Ethics & Accountability": level-4/08-ethics-accountability.md
+      - "09 · Versioning, Rollout & Incident Response": level-4/09-rollout-incidents.md
+      - "10 · Capstone — A Production-Ready Agent": level-4/10-capstone.md
