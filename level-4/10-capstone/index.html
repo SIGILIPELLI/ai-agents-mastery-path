@@ -1,0 +1,2804 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Capstone: build one agent with every production control from the course — governed tools, policy, approvals, idempotency, tracing, kill switch, eval gate.">
+      
+      
+      
+        <link rel="canonical" href="https://sigilipelli.github.io/ai-agents-mastery-path/level-4/10-capstone/">
+      
+      
+        <link rel="prev" href="../09-rollout-incidents/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>10 · Capstone — A Production-Ready Agent - AI Agents Mastery Path</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/progress-tracker.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-05VBGCXN12"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-05VBGCXN12');
+  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI Agents Mastery Path">
+  <meta property="og:title" content="10 · Capstone — A Production-Ready Agent">
+  <meta property="og:description" content="Capstone: build one agent with every production control from the course — governed tools, policy, approvals, idempotency, tracing, kill switch, eval gate.">
+  <meta property="og:url" content="https://sigilipelli.github.io/ai-agents-mastery-path/level-4/10-capstone/">
+  <meta property="og:image" content="https://sigilipelli.github.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="10 · Capstone — A Production-Ready Agent">
+  <meta name="twitter:description" content="Capstone: build one agent with every production control from the course — governed tools, policy, approvals, idempotency, tracing, kill switch, eval gate.">
+  <meta name="twitter:image" content="https://sigilipelli.github.io/og-image.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
+     crossorigin="anonymous"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-9440969811959397",
+      enable_page_level_ads: true
+    });
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "AI Agents Mastery Path",
+    "description": "A structured, vendor-neutral course on building AI agents — the agent loop, tool calling, planning, memory, multi-agent systems, evaluation and safety — with runnable offline code.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Mastery Path",
+      "sameAs": "https://sigilipelli.github.io/"
+    },
+    "isAccessibleForFree": true,
+    "url": "https://sigilipelli.github.io/ai-agents-mastery-path/level-4/10-capstone/"
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "10 \u00b7 Capstone \u2014 A Production-Ready Agent",
+    "description": "Capstone: build one agent with every production control from the course \u2014 governed tools, policy, approvals, idempotency, tracing, kill switch, eval gate.",
+    "url": "https://sigilipelli.github.io/ai-agents-mastery-path/level-4/10-capstone/",
+    "isPartOf": {
+      "@type": "Course",
+      "name": "AI Agents Mastery Path",
+      "url": "https://sigilipelli.github.io/ai-agents-mastery-path/"
+    },
+    "isAccessibleForFree": true,
+    "learningResourceType": "Lesson",
+    "inLanguage": "en"
+  }
+  </script>
+  
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#10-capstone-a-production-ready-agent" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AI Agents Mastery Path" class="md-header__button md-logo" aria-label="AI Agents Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Agents Mastery Path
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              10 · Capstone — A Production-Ready Agent
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sigilipelli/ai-agents-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agents-mastery-path
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../privacy/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Privacy Policy
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../license/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../level-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 1 · Entry
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../level-2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 2 · Intermediate
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../level-3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 3 · Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 4 · Master
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI Agents Mastery Path" class="md-nav__button md-logo" aria-label="AI Agents Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    AI Agents Mastery Path
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sigilipelli/ai-agents-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agents-mastery-path
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../level-1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1 · Entry
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 1 · Entry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/01-what-is-an-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · What an Agent Is (and Isn't)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/02-the-agent-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · The Agent Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/03-tool-calling-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Tool Calling Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/04-tool-definitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Writing Good Tool Definitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/05-minimal-agent-from-scratch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · A Minimal Agent in Plain Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/06-handling-tool-errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Handling Tool Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/07-stopping-conditions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Stopping Conditions & Step Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/08-structured-outputs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Structured Outputs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/09-logging-tracing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Logging & Tracing an Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/10-project-file-organizer-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — File-Organizer Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../level-2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 2 · Intermediate
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 2 · Intermediate
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/01-frameworks-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Frameworks: When and Which
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/02-state-graphs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Agents as State Graphs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/03-short-term-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Short-Term Memory & Context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/04-long-term-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Long-Term & Vector Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/05-react-plan-execute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · ReAct and Plan-and-Execute
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/06-reflection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Reflection & Self-Critique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/07-retrieval-as-a-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Retrieval as a Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/08-human-in-the-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Human-in-the-Loop Approvals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/09-streaming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Streaming Agent Progress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/10-project-research-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Research Agent with Approvals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../level-3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3 · Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 3 · Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/01-multi-agent-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Multi-Agent Systems: Why and When
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/02-supervisors-handoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Supervisors & Handoffs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/03-mcp-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Model Context Protocol (MCP) Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/04-sandboxing-code-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Sandboxing Code-Execution Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/05-eval-task-success/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Evaluating Agents: Task Success
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/06-trajectory-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Trajectory Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/07-cost-latency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Cost & Latency Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/08-reliability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Reliability: Retries, Timeouts, Idempotency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/09-prompt-injection-defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Prompt Injection via Tools & Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/10-project-multi-agent-triage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Evaluated Multi-Agent Triage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 4 · Master
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 4 · Master
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-production-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Production Agent Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Observability in Production
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-security-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Security & Least Privilege
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-guardrails-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Guardrails & Policy as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-enterprise-workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Agentic Workflows in the Enterprise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-when-not-to-use-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · When NOT to Use an Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-testing-strategies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Testing Strategies for Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-ethics-accountability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Ethics & Accountability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-rollout-incidents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Versioning, Rollout & Incident Response
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Capstone — A Production-Ready Agent
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Capstone — A Production-Ready Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-governed-execution-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The governed execution path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-eval-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The eval gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-launch-dossier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The launch dossier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-governed-execution-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The governed execution path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-eval-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The eval gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-launch-dossier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The launch dossier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="10-capstone-a-production-ready-agent">10 · Capstone — A Production-Ready Agent<a class="headerlink" href="#10-capstone-a-production-ready-agent" title="Permanent link">&para;</a></h1>
+<p>The capstone brings the whole course into one small but complete system: a customer
+billing assistant whose every tool call passes through a <strong>governed execution path</strong>,
+whose runs are <strong>traced with a version ID</strong>, and which cannot be released without
+passing an <strong>eval gate</strong>. The model is still a mock — so it runs anywhere — and one
+scenario deliberately uses a mock that misbehaves, to prove the controls hold.</p>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Requirement</th>
+<th>Course source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Framework-free loop with step limit and loop detection</td>
+<td>L1-05, L1-07</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Tools declared once with schemas; actionable errors</td>
+<td>L1-04, L1-06</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Every call checked against the user's permissions (tenant)</td>
+<td>L4-03</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Every call evaluated by declarative policy: allow / approve / deny</td>
+<td>L4-04</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Approval for money above a threshold; denials returned to the model</td>
+<td>L2-08</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Idempotency keys on writes</td>
+<td>L3-08</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Kill switch and writes-off switch, read on every call</td>
+<td>L4-09</td>
+</tr>
+<tr>
+<td>8</td>
+<td>JSONL trace per run including the version bundle ID; secrets redacted</td>
+<td>L1-09, L4-09</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Offline eval gate on outcome and trajectory before release</td>
+<td>L3-05, L3-06, L4-07</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-governed-execution-path">The governed execution path<a class="headerlink" href="#the-governed-execution-path" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>model proposes call ──▶ kill switch? ──▶ authorize(principal) ──▶ policy(args, ctx)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                                                    │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                        ┌─────────── allow ◀───────────┬────────────┤
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                        │                         approve?        deny ──▶ result: denied + reason
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                        ▼                              ▼
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>              idempotency key (writes) ◀──── human decision
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                        │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                        ▼
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                  execute tool ──▶ trace ──▶ result to model
+</code></pre></div>
+<h2 id="the-code">The code<a class="headerlink" href="#the-code" title="Permanent link">&para;</a></h2>
+<div class="highlight"><span class="filename">capstone.py</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""Capstone: a governed billing assistant built from the course's parts."""</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span><span class="p">,</span> <span class="n">registry</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mini_agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_agent</span><span class="p">,</span> <span class="n">call</span><span class="p">,</span> <span class="n">answer</span><span class="p">,</span> <span class="n">tool_results</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">guards</span><span class="w"> </span><span class="kn">import</span> <span class="n">repeated_call</span><span class="p">,</span> <span class="n">too_many_errors</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">tracer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tracer</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># ---------- configuration &amp; version bundle ----------</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">BUNDLE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"model"</span><span class="p">:</span> <span class="s2">"mock-billing-1"</span><span class="p">,</span> <span class="s2">"prompt"</span><span class="p">:</span> <span class="s2">"billing-assistant v3"</span><span class="p">,</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>          <span class="s2">"tools"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"get_invoice"</span><span class="p">,</span> <span class="s2">"issue_refund"</span><span class="p">],</span> <span class="s2">"policy"</span><span class="p">:</span> <span class="s2">"capstone-rules-1"</span><span class="p">,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>          <span class="s2">"max_steps"</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">BUNDLE_ID</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">BUNDLE</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">FLAGS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"agent_enabled"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"writes_enabled"</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># ---------- fixtures (a test double of the billing system) ----------</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="k">def</span><span class="w"> </span><span class="nf">new_world</span><span class="p">():</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"invoices"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"INV-1"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"tenant"</span><span class="p">:</span> <span class="s2">"acme"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span> <span class="s2">"dupe"</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>                         <span class="s2">"INV-2"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"tenant"</span><span class="p">:</span> <span class="s2">"acme"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">400.0</span><span class="p">,</span> <span class="s2">"dupe"</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>                         <span class="s2">"INV-7"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"tenant"</span><span class="p">:</span> <span class="s2">"globex"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">80.0</span><span class="p">,</span> <span class="s2">"dupe"</span><span class="p">:</span> <span class="kc">True</span><span class="p">}},</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>            <span class="s2">"refunds"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"idem"</span><span class="p">:</span> <span class="p">{}}</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="c1"># ---------- policy (L4-04): first match wins, default deny ----------</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="n">RULES</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="p">(</span><span class="s2">"P1"</span><span class="p">,</span> <span class="s2">"get_invoice"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"allow"</span><span class="p">,</span> <span class="s2">"reads allowed"</span><span class="p">),</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="p">(</span><span class="s2">"P2"</span><span class="p">,</span> <span class="s2">"issue_refund"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"deny"</span><span class="p">,</span> <span class="s2">"amount must be positive"</span><span class="p">),</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    <span class="p">(</span><span class="s2">"P3"</span><span class="p">,</span> <span class="s2">"issue_refund"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">"allow"</span><span class="p">,</span> <span class="s2">"small refund"</span><span class="p">),</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    <span class="p">(</span><span class="s2">"P4"</span><span class="p">,</span> <span class="s2">"issue_refund"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">"approve"</span><span class="p">,</span> <span class="s2">"needs team lead"</span><span class="p">),</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="p">]</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="k">def</span><span class="w"> </span><span class="nf">policy</span><span class="p">(</span><span class="n">tool_name</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    <span class="k">for</span> <span class="n">rid</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">cond</span><span class="p">,</span> <span class="n">decision</span><span class="p">,</span> <span class="n">why</span> <span class="ow">in</span> <span class="n">RULES</span><span class="p">:</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="n">tool_name</span> <span class="ow">and</span> <span class="n">cond</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>            <span class="k">return</span> <span class="n">decision</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">why</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="k">return</span> <span class="s2">"deny"</span><span class="p">,</span> <span class="s2">"DEFAULT"</span><span class="p">,</span> <span class="s2">"no rule allows this"</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="n">WRITES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"issue_refund"</span><span class="p">}</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="k">def</span><span class="w"> </span><span class="nf">governed</span><span class="p">(</span><span class="n">tools</span><span class="p">,</span> <span class="n">principal</span><span class="p">,</span> <span class="n">world</span><span class="p">,</span> <span class="n">approver</span><span class="p">,</span> <span class="n">run_id</span><span class="p">,</span> <span class="n">audit</span><span class="p">):</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">    </span><span class="sd">"""Wrap every tool with: kill switch, authz, policy, approval, idempotency."""</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    <span class="n">wrapped</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">tools</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">make</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">):</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>            <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">):</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>                <span class="k">if</span> <span class="ow">not</span> <span class="n">FLAGS</span><span class="p">[</span><span class="s2">"agent_enabled"</span><span class="p">]:</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"assistant is disabled; a person will follow up"</span><span class="p">)</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>                <span class="n">inv</span> <span class="o">=</span> <span class="n">world</span><span class="p">[</span><span class="s2">"invoices"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"invoice_id"</span><span class="p">))</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>                <span class="k">if</span> <span class="n">inv</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">inv</span><span class="p">[</span><span class="s2">"tenant"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">principal</span><span class="p">[</span><span class="s2">"tenant"</span><span class="p">]:</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>                    <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="s2">"no such invoice for this account"</span><span class="p">)</span>   <span class="c1"># authz</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>                <span class="n">decision</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">why</span> <span class="o">=</span> <span class="n">policy</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>                <span class="n">entry</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"tool"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">"args"</span><span class="p">:</span> <span class="n">args</span><span class="p">,</span> <span class="s2">"rule"</span><span class="p">:</span> <span class="n">rid</span><span class="p">,</span> <span class="s2">"decision"</span><span class="p">:</span> <span class="n">decision</span><span class="p">}</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>                <span class="k">if</span> <span class="n">decision</span> <span class="o">==</span> <span class="s2">"approve"</span><span class="p">:</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>                    <span class="n">decision</span> <span class="o">=</span> <span class="n">approver</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>                    <span class="n">entry</span><span class="p">[</span><span class="s2">"human"</span><span class="p">]</span> <span class="o">=</span> <span class="n">decision</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>                    <span class="k">if</span> <span class="n">decision</span> <span class="o">==</span> <span class="s2">"deny"</span><span class="p">:</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>                        <span class="n">why</span> <span class="o">=</span> <span class="s2">"declined by a team lead"</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>                <span class="n">audit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>                <span class="k">if</span> <span class="n">decision</span> <span class="o">==</span> <span class="s2">"deny"</span><span class="p">:</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>                    <span class="k">return</span> <span class="p">{</span><span class="s2">"denied"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"reason"</span><span class="p">:</span> <span class="n">why</span><span class="p">,</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>                            <span class="s2">"note"</span><span class="p">:</span> <span class="s2">"do not retry; explain to the user"</span><span class="p">}</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">WRITES</span><span class="p">:</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>                    <span class="k">if</span> <span class="ow">not</span> <span class="n">FLAGS</span><span class="p">[</span><span class="s2">"writes_enabled"</span><span class="p">]:</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>                        <span class="k">return</span> <span class="p">{</span><span class="s2">"prepared_only"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"note"</span><span class="p">:</span> <span class="s2">"writes are paused"</span><span class="p">}</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>                    <span class="n">key</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>                                         <span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">12</span><span class="p">]</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>                    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">world</span><span class="p">[</span><span class="s2">"idem"</span><span class="p">]:</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>                        <span class="k">return</span> <span class="n">world</span><span class="p">[</span><span class="s2">"idem"</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>                <span class="c1"># replay, no new effect</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>                    <span class="n">world</span><span class="p">[</span><span class="s2">"idem"</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>                    <span class="k">return</span> <span class="n">world</span><span class="p">[</span><span class="s2">"idem"</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>                <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>            <span class="n">inner</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">schema</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>            <span class="k">return</span> <span class="n">inner</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>        <span class="n">wrapped</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">make</span><span class="p">()</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>    <span class="k">return</span> <span class="n">wrapped</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="k">def</span><span class="w"> </span><span class="nf">build_tools</span><span class="p">(</span><span class="n">world</span><span class="p">):</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>    <span class="nd">@tool</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_invoice</span><span class="p">(</span><span class="n">invoice_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="w">        </span><span class="sd">"""Fetch an invoice: amount and whether it was charged twice.</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a><span class="sd">        Args:</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="sd">            invoice_id: e.g. 'INV-1'</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a><span class="sd">        """</span>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>        <span class="n">inv</span> <span class="o">=</span> <span class="n">world</span><span class="p">[</span><span class="s2">"invoices"</span><span class="p">][</span><span class="n">invoice_id</span><span class="p">]</span>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">invoice_id</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="n">inv</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">],</span> <span class="s2">"charged_twice"</span><span class="p">:</span> <span class="n">inv</span><span class="p">[</span><span class="s2">"dupe"</span><span class="p">]}</span>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>    <span class="nd">@tool</span>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">issue_refund</span><span class="p">(</span><span class="n">invoice_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a><span class="w">        </span><span class="sd">"""Refund an amount on an invoice. Irreversible; subject to policy and approval.</span>
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a><span class="sd">        Args:</span>
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="sd">            invoice_id: Invoice id</span>
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a><span class="sd">            amount: EUR amount, at most the invoice amount</span>
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a><span class="sd">        """</span>
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>        <span class="n">world</span><span class="p">[</span><span class="s2">"refunds"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">invoice_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">))</span>
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">"refunded"</span><span class="p">:</span> <span class="n">amount</span><span class="p">,</span> <span class="s2">"invoice_id"</span><span class="p">:</span> <span class="n">invoice_id</span><span class="p">}</span>
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>    <span class="k">return</span> <span class="n">registry</span><span class="p">(</span><span class="n">get_invoice</span><span class="p">,</span> <span class="n">issue_refund</span><span class="p">)</span>
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a><span class="c1"># ---------- the model: a well-behaved mock and a misbehaving one ----------</span>
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a><span class="k">def</span><span class="w"> </span><span class="nf">good_model</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">schemas</span><span class="p">):</span>
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>    <span class="n">inv</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"."</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"content"</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"INV-"</span><span class="p">))</span>
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>    <span class="n">r</span> <span class="o">=</span> <span class="n">tool_results</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">r</span><span class="p">:</span>
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>        <span class="k">return</span> <span class="n">call</span><span class="p">(</span><span class="s2">"get_invoice"</span><span class="p">,</span> <span class="n">invoice_id</span><span class="o">=</span><span class="n">inv</span><span class="p">)</span>
+<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>    <span class="n">last</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>    <span class="k">if</span> <span class="s2">"error"</span> <span class="ow">in</span> <span class="n">last</span> <span class="ow">and</span> <span class="s2">"disabled"</span> <span class="ow">in</span> <span class="n">last</span><span class="p">[</span><span class="s2">"error"</span><span class="p">]:</span>
+<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>        <span class="k">return</span> <span class="n">answer</span><span class="p">(</span><span class="s2">"The assistant is paused right now; a person will follow up."</span><span class="p">)</span>
+<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>    <span class="k">if</span> <span class="s2">"error"</span> <span class="ow">in</span> <span class="n">last</span><span class="p">:</span>
+<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>        <span class="k">return</span> <span class="n">answer</span><span class="p">(</span><span class="sa">f</span><span class="s2">"I couldn't find </span><span class="si">{</span><span class="n">inv</span><span class="si">}</span><span class="s2"> on your account."</span><span class="p">)</span>
+<a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>    <span class="k">if</span> <span class="n">last</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"denied"</span><span class="p">):</span>
+<a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>        <span class="k">return</span> <span class="n">answer</span><span class="p">(</span><span class="sa">f</span><span class="s2">"I couldn't refund </span><span class="si">{</span><span class="n">inv</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">last</span><span class="p">[</span><span class="s1">'reason'</span><span class="p">]</span><span class="si">}</span><span class="s2">. The case stays open."</span><span class="p">)</span>
+<a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>    <span class="k">if</span> <span class="s2">"refunded"</span> <span class="ow">in</span> <span class="n">last</span><span class="p">:</span>
+<a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>        <span class="k">return</span> <span class="n">answer</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Refunded </span><span class="si">{</span><span class="n">last</span><span class="p">[</span><span class="s1">'refunded'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> EUR on </span><span class="si">{</span><span class="n">inv</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+<a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>    <span class="k">if</span> <span class="n">last</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"charged_twice"</span><span class="p">):</span>
+<a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>        <span class="k">return</span> <span class="n">call</span><span class="p">(</span><span class="s2">"issue_refund"</span><span class="p">,</span> <span class="s2">"c2"</span><span class="p">,</span> <span class="n">invoice_id</span><span class="o">=</span><span class="n">inv</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="n">last</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">])</span>
+<a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>    <span class="k">return</span> <span class="n">answer</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">inv</span><span class="si">}</span><span class="s2"> was only charged once, so no refund is due."</span><span class="p">)</span>
+<a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>
+<a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a><span class="k">def</span><span class="w"> </span><span class="nf">rogue_model</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">schemas</span><span class="p">):</span>
+<a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a><span class="w">    </span><span class="sd">"""Simulates a compromised/confused model: cross-tenant lookups and repeated refunds."""</span>
+<a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>    <span class="n">r</span> <span class="o">=</span> <span class="n">tool_results</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+<a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">r</span><span class="p">:</span>
+<a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>        <span class="k">return</span> <span class="n">call</span><span class="p">(</span><span class="s2">"get_invoice"</span><span class="p">,</span> <span class="n">invoice_id</span><span class="o">=</span><span class="s2">"INV-7"</span><span class="p">)</span>          <span class="c1"># another tenant's invoice</span>
+<a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a>    <span class="k">return</span> <span class="n">call</span><span class="p">(</span><span class="s2">"issue_refund"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"c</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">invoice_id</span><span class="o">=</span><span class="s2">"INV-1"</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mf">30.0</span><span class="p">)</span>
+<a id="__codelineno-1-123" name="__codelineno-1-123" href="#__codelineno-1-123"></a>
+<a id="__codelineno-1-124" name="__codelineno-1-124" href="#__codelineno-1-124"></a><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">principal</span><span class="p">,</span> <span class="n">approver</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="s2">"deny"</span><span class="p">,</span> <span class="n">trace_path</span><span class="o">=</span><span class="s2">"capstone.jsonl"</span><span class="p">):</span>
+<a id="__codelineno-1-125" name="__codelineno-1-125" href="#__codelineno-1-125"></a>    <span class="n">world</span><span class="p">,</span> <span class="n">audit</span> <span class="o">=</span> <span class="n">new_world</span><span class="p">(),</span> <span class="p">[]</span>
+<a id="__codelineno-1-126" name="__codelineno-1-126" href="#__codelineno-1-126"></a>    <span class="n">tracer</span> <span class="o">=</span> <span class="n">Tracer</span><span class="p">(</span><span class="n">trace_path</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="n">bundle_id</span><span class="o">=</span><span class="n">BUNDLE_ID</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="n">principal</span><span class="p">[</span><span class="s2">"tenant"</span><span class="p">])</span>
+<a id="__codelineno-1-127" name="__codelineno-1-127" href="#__codelineno-1-127"></a>    <span class="n">tools</span> <span class="o">=</span> <span class="n">governed</span><span class="p">(</span><span class="n">build_tools</span><span class="p">(</span><span class="n">world</span><span class="p">),</span> <span class="n">principal</span><span class="p">,</span> <span class="n">world</span><span class="p">,</span> <span class="n">approver</span><span class="p">,</span> <span class="n">tracer</span><span class="o">.</span><span class="n">run_id</span><span class="p">,</span> <span class="n">audit</span><span class="p">)</span>
+<a id="__codelineno-1-128" name="__codelineno-1-128" href="#__codelineno-1-128"></a>    <span class="n">res</span> <span class="o">=</span> <span class="n">run_agent</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="n">BUNDLE</span><span class="p">[</span><span class="s2">"max_steps"</span><span class="p">],</span>
+<a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a>                    <span class="n">guards</span><span class="o">=</span><span class="p">[</span><span class="n">repeated_call</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">too_many_errors</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span> <span class="n">on_event</span><span class="o">=</span><span class="n">tracer</span><span class="p">)</span>
+<a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a>    <span class="k">return</span> <span class="n">res</span><span class="p">,</span> <span class="n">world</span><span class="p">,</span> <span class="n">audit</span>
+</code></pre></div>
+<h2 id="running-the-scenarios">Running the scenarios<a class="headerlink" href="#running-the-scenarios" title="Permanent link">&para;</a></h2>
+<div class="highlight"><span class="filename">capstone_demo.py</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">capstone</span><span class="w"> </span><span class="kn">import</span> <span class="n">run</span><span class="p">,</span> <span class="n">good_model</span><span class="p">,</span> <span class="n">rogue_model</span><span class="p">,</span> <span class="n">BUNDLE_ID</span><span class="p">,</span> <span class="n">FLAGS</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">"capstone.jsonl"</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">"capstone.jsonl"</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">acme</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"ana"</span><span class="p">,</span> <span class="s2">"tenant"</span><span class="p">:</span> <span class="s2">"acme"</span><span class="p">}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"bundle:"</span><span class="p">,</span> <span class="n">BUNDLE_ID</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">show</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">world</span><span class="p">,</span> <span class="n">audit</span><span class="p">):</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="se">\n</span><span class="s2">  answer : </span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="s1">'answer'</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">  stopped: </span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="s1">'stopped'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>          <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">  refunds: </span><span class="si">{</span><span class="n">world</span><span class="p">[</span><span class="s1">'refunds'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">audit</span><span class="p">:</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  audit  : </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="s1">'tool'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="s1">'args'</span><span class="p">]</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="s1">'rule'</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="s1">'decision'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>              <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s2">" (human: </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="s1">'human'</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span> <span class="k">if</span> <span class="s2">"human"</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">else</span> <span class="s2">""</span><span class="p">))</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">show</span><span class="p">(</span><span class="s2">"1. small duplicate charge (policy allows)"</span><span class="p">,</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>     <span class="o">*</span><span class="n">run</span><span class="p">(</span><span class="n">good_model</span><span class="p">,</span> <span class="s2">"Charged twice on INV-1."</span><span class="p">,</span> <span class="n">acme</span><span class="p">))</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">show</span><span class="p">(</span><span class="s2">"2. large refund, team lead declines"</span><span class="p">,</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>     <span class="o">*</span><span class="n">run</span><span class="p">(</span><span class="n">good_model</span><span class="p">,</span> <span class="s2">"Charged twice on INV-2."</span><span class="p">,</span> <span class="n">acme</span><span class="p">,</span> <span class="n">approver</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="s2">"deny"</span><span class="p">))</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">show</span><span class="p">(</span><span class="s2">"3. rogue model: cross-tenant read, then repeated refund attempts"</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>     <span class="o">*</span><span class="n">run</span><span class="p">(</span><span class="n">rogue_model</span><span class="p">,</span> <span class="s2">"Anything."</span><span class="p">,</span> <span class="n">acme</span><span class="p">))</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="n">FLAGS</span><span class="p">[</span><span class="s2">"agent_enabled"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="n">show</span><span class="p">(</span><span class="s2">"4. kill switch on"</span><span class="p">,</span> <span class="o">*</span><span class="n">run</span><span class="p">(</span><span class="n">good_model</span><span class="p">,</span> <span class="s2">"Charged twice on INV-1."</span><span class="p">,</span> <span class="n">acme</span><span class="p">))</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="n">FLAGS</span><span class="p">[</span><span class="s2">"agent_enabled"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"capstone.jsonl"</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">trace lines:"</span><span class="p">,</span> <span class="n">lines</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">),</span> <span class="s2">"| every run tagged with bundle:"</span><span class="p">,</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>      <span class="n">lines</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="sa">f</span><span class="s1">'"bundle_id": "</span><span class="si">{</span><span class="n">BUNDLE_ID</span><span class="si">}</span><span class="s1">"'</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>bundle: 292665c915
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>1. small duplicate charge (policy allows)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  answer : Refunded 30.00 EUR on INV-1.
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  stopped: None
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  refunds: [('INV-1', 30.0)]
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  audit  : get_invoice {'invoice_id': 'INV-1'} -&gt; P1/allow
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  audit  : issue_refund {'invoice_id': 'INV-1', 'amount': 30.0} -&gt; P3/allow
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>2. large refund, team lead declines
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  answer : I couldn't refund INV-2: declined by a team lead. The case stays open.
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>  stopped: None
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>  refunds: []
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>  audit  : get_invoice {'invoice_id': 'INV-2'} -&gt; P1/allow
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>  audit  : issue_refund {'invoice_id': 'INV-2', 'amount': 400.0} -&gt; P4/approve (human: deny)
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>3. rogue model: cross-tenant read, then repeated refund attempts
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>  answer : None
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>  stopped: repeated call issue_refund{"amount": 30.0, "invoice_id": "INV-1"} 3 times
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>  refunds: [('INV-1', 30.0)]
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>  audit  : issue_refund {'invoice_id': 'INV-1', 'amount': 30.0} -&gt; P3/allow
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>  audit  : issue_refund {'invoice_id': 'INV-1', 'amount': 30.0} -&gt; P3/allow
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>  audit  : issue_refund {'invoice_id': 'INV-1', 'amount': 30.0} -&gt; P3/allow
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>4. kill switch on
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>  answer : The assistant is paused right now; a person will follow up.
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>  stopped: None
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>  refunds: []
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>trace lines: 26 | every run tagged with bundle: True
+</code></pre></div>
+<p>Read scenario 3 closely. The rogue model tried to read another tenant's invoice (blocked
+by authorization with a non-revealing message — it appears in the trace as a tool
+error rather than in the policy audit, because authorization runs first), then called <code>issue_refund</code> with the same
+arguments repeatedly. The <strong>idempotency key</strong> turned the repeats into replays — one
+refund, not several — and <code>repeated_call(3)</code> stopped the run. In scenario 4 the kill
+switch stopped every call before any policy or tool code ran.</p>
+<h2 id="the-eval-gate">The eval gate<a class="headerlink" href="#the-eval-gate" title="Permanent link">&para;</a></h2>
+<p>Finally, the release check: outcome and trajectory over a small suite, with the gate
+written down before looking at results.</p>
+<div class="highlight"><span class="filename">capstone_gate.py</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">capstone</span><span class="w"> </span><span class="kn">import</span> <span class="n">run</span><span class="p">,</span> <span class="n">good_model</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">trajectory</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_trajectory</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">acme</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"ana"</span><span class="p">,</span> <span class="s2">"tenant"</span><span class="p">:</span> <span class="s2">"acme"</span><span class="p">}</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">SUITE</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="p">(</span><span class="s2">"INV-1 small dupe"</span><span class="p">,</span> <span class="s2">"Charged twice on INV-1."</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="p">[</span><span class="s2">"refunds"</span><span class="p">]</span> <span class="o">==</span> <span class="p">[(</span><span class="s2">"INV-1"</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">)]),</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="p">(</span><span class="s2">"INV-2 declined"</span><span class="p">,</span> <span class="s2">"Charged twice on INV-2."</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="p">[</span><span class="s2">"refunds"</span><span class="p">]</span> <span class="o">==</span> <span class="p">[]),</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="p">(</span><span class="s2">"INV-7 other tenant"</span><span class="p">,</span> <span class="s2">"Charged twice on INV-7."</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="p">[</span><span class="s2">"refunds"</span><span class="p">]</span> <span class="o">==</span> <span class="p">[]),</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">]</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">RULES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"order"</span><span class="p">:</span> <span class="p">[(</span><span class="s2">"get_invoice"</span><span class="p">,</span> <span class="s2">"issue_refund"</span><span class="p">)],</span> <span class="s2">"forbidden"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"delete_invoice"</span><span class="p">]}</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="n">passed</span><span class="p">,</span> <span class="n">violations</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">check</span> <span class="ow">in</span> <span class="n">SUITE</span><span class="p">:</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>        <span class="n">res</span><span class="p">,</span> <span class="n">world</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">good_model</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">acme</span><span class="p">,</span> <span class="n">trace_path</span><span class="o">=</span><span class="s2">"gate.jsonl"</span><span class="p">)</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="n">ok</span> <span class="o">=</span> <span class="n">check</span><span class="p">(</span><span class="n">world</span><span class="p">)</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>        <span class="n">traj</span> <span class="o">=</span> <span class="n">check_trajectory</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">"messages"</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">"answer"</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">RULES</span><span class="p">)</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>        <span class="n">passed</span> <span class="o">+=</span> <span class="n">ok</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>        <span class="n">violations</span> <span class="o">+=</span> <span class="ow">not</span> <span class="n">traj</span><span class="p">[</span><span class="s2">"pass"</span><span class="p">]</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">SUITE</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="n">gate</span> <span class="o">=</span> <span class="n">passed</span> <span class="o">==</span> <span class="n">total</span> <span class="ow">and</span> <span class="n">violations</span> <span class="o">==</span> <span class="mi">0</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"outcome </span><span class="si">{</span><span class="n">passed</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2">, hard trajectory violations </span><span class="si">{</span><span class="n">violations</span><span class="si">}</span><span class="s2"> -&gt; "</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>      <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'RELEASE'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">gate</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'BLOCK'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>outcome 15/15, hard trajectory violations 0 -&gt; RELEASE
+</code></pre></div>
+<p>With a deterministic mock the gate passes trivially; with a real model the same script
+gives you a pass rate, and the gate decides whether that version ships.</p>
+<h2 id="the-launch-dossier">The launch dossier<a class="headerlink" href="#the-launch-dossier" title="Permanent link">&para;</a></h2>
+<p>Before launch, assemble one short document — reviewers should be able to approve from
+it alone:</p>
+<ol>
+<li><strong>Agent card</strong> (L4-08) with owners, scope, tools, data, controls, known limits.</li>
+<li><strong>Architecture</strong> (L4-01) showing the gateway and where each control lives.</li>
+<li><strong>Threat model</strong> (L4-03) for every write tool, with the code control that stops the
+   worst case.</li>
+<li><strong>Policy rules</strong> (L4-04) and their tests, approved by the policy owners.</li>
+<li><strong>Eval report</strong> (L3-05/06) for the release candidate, versus the current version.</li>
+<li><strong>Dashboards and alerts</strong> (L4-02), each alert linked to a runbook entry.</li>
+<li><strong>Rollout plan</strong> (L4-09): shadow → canary percentages → criteria to advance or roll
+   back; kill switch tested, with evidence.</li>
+<li><strong>Incident runbook</strong> and on-call rota.</li>
+</ol>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The capstone's safety comes from <strong>defence in depth along a single path</strong>. Every effect
+the agent can have flows through <code>governed()</code>, and each check along that path covers a
+different failure: the kill switch covers "we need to stop now", authorization covers
+"the model asked for someone else's data", policy covers "the action is outside what the
+business allows", approval covers "this is allowed but needs judgement", idempotency
+covers "the same action arrived twice", and guards cover "the run itself has gone
+wrong". Because none of them depend on the model's cooperation, swapping in a real model
+changes the <em>quality</em> of outcomes — which the eval gate measures — but not the
+<em>bounds</em> on what can happen.</p>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Controls implemented in some tools but not others</strong> — route everything through one
+  path.</li>
+<li><strong>Launching without the dossier</strong> because "it's just an internal tool".</li>
+<li><strong>An eval gate that isn't enforced</strong> in the release process.</li>
+<li><strong>Testing controls only with well-behaved mocks</strong> — always include a rogue scenario.</li>
+</ul>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Set <code>FLAGS["writes_enabled"] = False</code> and run scenario 1. Confirm the refund is
+   prepared, not executed, and write the answer the model should give the user.</li>
+<li>Add a <code>send_receipt(invoice_id)</code> tool that requires approval and is subject to an
+   egress rule, and add a scenario for it.</li>
+<li>Replace <code>good_model</code> with a real model through your adapter (L1-05). Run the gate
+   with 10 trials per case. Would you ship it? Write the paragraph you'd put in the
+   dossier explaining the decision.</li>
+<li>Produce the complete launch dossier for your own agent idea — even if you never build
+   it, the exercise will show you what's missing.</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../09-rollout-incidents/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 09 · Versioning, Rollout &amp; Incident Response">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                09 · Versioning, Rollout & Incident Response
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../javascripts/progress-tracker.js"></script>
+      
+    
+  </body>
+</html>
