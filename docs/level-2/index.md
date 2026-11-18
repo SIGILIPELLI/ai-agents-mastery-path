@@ -41,6 +41,6 @@ adopt.
   `mini_agent.py`, `guards.py` and `tracer.py`.
 - Python 3.9+, standard library only. Installing a framework is optional and only needed
   if you want to try the framework snippets yourself.
-- For the retrieval lesson, the [RAG Mastery Path](https://sigilipelli.github.io/rag-mastery-path/)
+- For the retrieval lesson, the [RAG Mastery Path](https://learnmasterypath.com/rag-mastery-path/)
   covers embeddings, chunking and vector stores in depth. Here we focus on the agent
   side: exposing retrieval as a tool and using its results well.

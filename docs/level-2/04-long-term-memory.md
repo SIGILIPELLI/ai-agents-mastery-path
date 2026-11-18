@@ -38,7 +38,7 @@ A real system would use a learned embedding model, which maps text to vectors so
 *meaning* determines closeness ("car" near "automobile"). To stay offline and
 dependency-free, this example uses a **toy embedding** — hashed word counts — which only
 captures word overlap. The storage, tool design and retrieval flow are the same; only
-the quality of matching differs. The [RAG Mastery Path](https://sigilipelli.github.io/rag-mastery-path/)
+the quality of matching differs. The [RAG Mastery Path](https://learnmasterypath.com/rag-mastery-path/)
 covers real embeddings and vector stores.
 
 ```python title="ltm.py"

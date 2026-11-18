@@ -33,7 +33,7 @@ something it didn't.
 When the output is text that must be judged (a summary, an explanation), use a rubric —
 and, if you use a model as the judge, validate it against human labels on a sample first.
 LLM-as-judge methods and their biases are covered in the
-[Prompt Engineering Mastery Path](https://sigilipelli.github.io/prompt-engineering-mastery-path/).
+[Prompt Engineering Mastery Path](https://learnmasterypath.com/prompt-engineering-mastery-path/).
 
 ## Worked example: an eval harness with repeated trials
 

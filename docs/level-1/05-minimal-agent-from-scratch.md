@@ -207,7 +207,7 @@ def real_model(messages, schemas):
 
 Write `to_provider_format` and `from_provider_format` from your provider's current
 documentation, keep them in one file, and unit-test them with recorded responses. The
-[LLM Dev Mastery Path](https://sigilipelli.github.io/llm-dev-mastery-path/) covers API
+[LLM Dev Mastery Path](https://learnmasterypath.com/llm-dev-mastery-path/) covers API
 calls themselves in detail; this course stays on the loop around them.
 
 ## How It Actually Works

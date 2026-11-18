@@ -43,6 +43,6 @@ the evaluation harness that tells you whether it's any good.
   Windows those limits are skipped and the lesson explains the alternatives.
 - Security material in this level is **defensive**: how attacks on agents work in
   principle and how to design so they fail. For broader application security, see the
-  [Cybersecurity Mastery Path](https://sigilipelli.github.io/cybersecurity-mastery-path/);
+  [Cybersecurity Mastery Path](https://learnmasterypath.com/cybersecurity-mastery-path/);
   for LLM-level safety and red-teaming, see the
-  [LLM Dev Mastery Path](https://sigilipelli.github.io/llm-dev-mastery-path/).
+  [LLM Dev Mastery Path](https://learnmasterypath.com/llm-dev-mastery-path/).

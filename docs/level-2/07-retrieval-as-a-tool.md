@@ -9,7 +9,7 @@ question, fetch the top chunks, stuff them into the prompt, answer. An agent can
 something different — treat search as **a tool it chooses to call**, possibly several
 times, with queries it writes itself. This lesson is about that agent side. How to
 build a good index (chunking, embeddings, hybrid search, reranking) is covered in the
-[RAG Mastery Path](https://sigilipelli.github.io/rag-mastery-path/); we assume you
+[RAG Mastery Path](https://learnmasterypath.com/rag-mastery-path/); we assume you
 have a search function and focus on wrapping it well.
 
 ## Always-retrieve vs. agentic retrieval

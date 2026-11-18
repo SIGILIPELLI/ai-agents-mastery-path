@@ -17,7 +17,7 @@ something simpler when it suffices is not a lack of ambition; it's engineering.
 3. **A single LLM call.** Classification, extraction, summarization, rewriting, drafting.
    One call, fixed inputs, validated output.
 4. **Retrieval + one call.** Question answering over documents (see the
-   [RAG Mastery Path](https://sigilipelli.github.io/rag-mastery-path/)).
+   [RAG Mastery Path](https://learnmasterypath.com/rag-mastery-path/)).
 5. **A workflow with LLM steps.** Fixed sequence; the model fills in steps; code decides
    the path (L1-01).
 6. **An agent** — only when the path genuinely depends on what's discovered along the way.

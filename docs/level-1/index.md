@@ -48,7 +48,7 @@ Three ideas run through the whole level:
   the output deterministic, so the printed output you see on each page is exactly what
   the code prints. Lesson 05 shows the one function you replace to use a real model.
 - Comfort with Python functions, dictionaries and JSON. If you need a refresher, see
-  [Python Mastery Path](https://sigilipelli.github.io/python-mastery-path/).
+  [Python Mastery Path](https://learnmasterypath.com/python-mastery-path/).
 
 ## How the code is organized
 

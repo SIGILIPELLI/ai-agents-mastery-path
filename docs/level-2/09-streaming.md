@@ -14,7 +14,7 @@ feature with real architectural consequences.
 1. **Token streaming** — the model's text arrives piece by piece as it's generated.
    Providers support this for plain text and, with varying detail, for tool-call
    arguments. Covered in depth in the
-   [LLM Dev Mastery Path](https://sigilipelli.github.io/llm-dev-mastery-path/).
+   [LLM Dev Mastery Path](https://learnmasterypath.com/llm-dev-mastery-path/).
 2. **Event streaming** — the *agent* emits structured events: step started, tool called,
    tool finished, approval needed, final answer. This is what a user interface for an
    agent is built on, and it's what this lesson covers.

@@ -189,7 +189,7 @@ contains words that actually appear in the task.
 Parameter descriptions act at a second moment — while the model generates argument
 values. An example format (`e.g. 'A-10293'`) is especially effective because models
 imitate nearby examples closely; the same effect you see with few-shot prompting (see
-[Prompt Engineering Mastery Path](https://sigilipelli.github.io/prompt-engineering-mastery-path/)).
+[Prompt Engineering Mastery Path](https://learnmasterypath.com/prompt-engineering-mastery-path/)).
 
 Finally, tool output becomes context for the *next* decision. A result that includes
 `"truncated": true` changes what the most likely next action is (narrow the search),

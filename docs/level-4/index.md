@@ -35,7 +35,7 @@ important, whether an agent should have been built at all (lesson 06).
 - Where a lesson describes cloud services, managed queues or observability products,
   it describes them generically; they can't be run from this page, and specific product
   names are given only as examples of a category.
-- Related reading: the [System Design Mastery Path](https://sigilipelli.github.io/system-design-mastery-path/)
+- Related reading: the [System Design Mastery Path](https://learnmasterypath.com/system-design-mastery-path/)
   for queues, workers and scaling in general, and the
-  [AI Manager Mastery Path](https://sigilipelli.github.io/ai-manager-mastery-path/) for
+  [AI Manager Mastery Path](https://learnmasterypath.com/ai-manager-mastery-path/) for
   the organisational side of adopting AI.
