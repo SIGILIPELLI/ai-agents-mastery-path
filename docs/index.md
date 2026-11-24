@@ -1,6 +1,6 @@
 ---
 title: "Free AI Agents Course: Build Tool-Using, Safe & Evaluated LLM Agents"
-description: "Free vendor-neutral AI agents course — 36 lessons and 4 projects on the agent loop, tool calling, memory, planning, multi-agent systems, MCP, evals and agent security."
+description: "Free vendor-neutral AI agents course — 36 lessons, 3 projects and 1 capstone on the agent loop, tool calling, memory, planning, multi-agent systems, MCP, evals and agent security."
 ---
 
 # AI Agents Mastery Path
